@@ -9,13 +9,117 @@
   </head>
   <body onload="initGame()" onkeyup="onKeyUp(event)">
     <div class="root">
-      <main>
-        <div class="game">
-          <!-- <div class="board"></div> -->
-          <table class="center">
-            <tbody class="board"></tbody>
+      <main class="game">
+        <!-- game header  -->
+        <header class="game__header">
+          <table>
+            <tr>
+              <!-- timer  -->
+              <td>
+                <span class="lebel"> Timer</span>
+                <div class="timer"><span>01</span>:<span>22</span></div>
+              </td>
+              <!-- mines  -->
+              <td>
+                <span class="lebel"> Mines left</span>
+                <div class="mines">
+                  <span>20</span>
+                </div>
+              </td>
+
+              <td class="space">space</td>
+
+              <td>
+                <div class="button">
+                  <span>Start Game</span>
+
+                  <span>
+                    <img
+                      class="smiley_img"
+                      src="./assets/images/cool2.jpeg"
+                      alt="" />
+                  </span>
+                  <span>
+                    <img
+                      class="smiley_img"
+                      src="./assets/images/sad2.jpeg"
+                      alt="" />
+                  </span>
+                </div>
+              </td>
+
+              <td class="space">space</td>
+
+              <td>
+                <button class="level">Easy</button>
+              </td>
+
+              <td>
+                <span>Lives</span>
+                <div class="lives">
+                  <span>
+                    <img
+                      class="mine_detector_img"
+                      src="./assets/images/sapper.png"
+                      alt="" />
+                  </span>
+                  <span>
+                    <img
+                      class="mine_detector_img"
+                      src="./assets/images/sapper.png"
+                      alt="" />
+                  </span>
+                  <span>
+                    <img
+                      class="mine_detector_img"
+                      src="./assets/images/sapper.png"
+                      alt="" />
+                  </span>
+                </div>
+              </td>
+              <!-- <td class="b">Element B</td> -->
+            </tr>
           </table>
-        </div>
+        </header>
+
+        <!-- main part  -->
+        <section class="game__container">
+          <!-- records -->
+          <aside class="records">
+            Records
+            <div class="record__line">
+              <span class="record__name">name:Andrey</span>
+              <span class="record__time">time: 1:00</span>
+            </div>
+            <div class="record__line">
+              <span class="record__name">name:Andrey</span>
+              <span class="record__time">time: 1:00</span>
+            </div>
+            <div class="record__line">
+              <span class="record__name">name:Andrey Solonikov</span>
+              <span class="record__time">time: 1:00</span>
+            </div>
+            <div class="record__line">
+              <span class="record__name">name:Andrey</span>
+              <span class="record__time">time: 1:00</span>
+            </div>
+            <div class="record__line">
+              <span class="record__name">name:Andrey</span>
+              <span class="record__time">time: 1:00</span>
+            </div>
+            <div class="record__line">
+              <span class="record__name">name:Andrey</span>
+              <span class="record__time">time: 1:00</span>
+            </div>
+          </aside>
+
+          <div class="mine-field">
+            <!-- board  -->
+            <table class="center" oncontextmenu="return false;">
+              <tbody class="board"></tbody>
+            </table>
+          </div>
+        </section>
       </main>
     </div>
     <script src="./js/util.js"></script>
@@ -23,3 +127,8 @@
     <script src="./js/game.js"></script>
   </body>
 </html>
+
+<!-- 
+ <table class="center">
+            <tbody class="board"></tbody>
+          </table> -->

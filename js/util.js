@@ -11,10 +11,6 @@ function buildBoard(rows, cols, mines) {
     mat.push(row);
   }
 
-  // mines
-  // mat[0][0].isMine = true;
-  // mat[0][1].isMine = true;
-
   return mat;
 }
 
@@ -59,7 +55,7 @@ function setClassToAll(board, className) {
     for (let j = 0; j < board.length; j++) {
       const cellSelector = '.' + getLocationClassName({ i, j }); // cell-i-j
       const elCell = document.querySelector(cellSelector);
-      console.log('elCell', elCell);
+      // console.log('elCell', elCell);
     }
 }
 
@@ -170,3 +166,11 @@ function timer() {
 }
 
 const c = console.log(document);
+
+// enable event on right mouse click
+window.oncontextmenu = (e) => {
+  e.preventDefault();
+  // console.log('right clicked');
+
+  e.target.onclick();
+};

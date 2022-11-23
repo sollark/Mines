@@ -1,5 +1,7 @@
 'use strict';
 
+// event.button
+
 const MINE = '*';
 const EXPLOSION = '@';
 const FLAG = '#';
@@ -21,7 +23,7 @@ function initGame() {
   setMinesNegsCount(gBoard);
   renderBoard(gBoard);
 
-  console.table(gBoard);
+  // console.table(gBoard);
 }
 
 function setMinesNegsCount(board) {
@@ -51,21 +53,27 @@ function placeMines() {
     if (gBoard[randomLocation.i][randomLocation.j].isMine) counter++;
     gBoard[randomLocation.i][randomLocation.j].isMine = true;
   }
-  console.log(gBoard);
 }
 
 function cellClicked(elCell, i, j) {
   console.log('elCell:', elCell, 'i', i, 'j', j);
-  if (gBoard[i][j].isMine) {
-    gBoard[i][j].isShown = true;
-    renderCell({ i, j }, MINE_IMG);
-    console.log('boom');
-  } else if (gBoard[i][j].minesAroundCount > 0) {
-    gBoard[i][j].isShown = true;
-    renderCell({ i, j }, gBoard[i][j].minesAroundCount);
-    console.log('lucky');
+  // console.log('e', event);
+
+  // RMB click
+  if (event.button === 2) {
+    console.log('mark');
   } else {
-    console.log('safe');
+    if (gBoard[i][j].isMine) {
+      gBoard[i][j].isShown = true;
+      renderCell({ i, j }, MINE_IMG);
+      console.log('boom');
+    } else if (gBoard[i][j].minesAroundCount > 0) {
+      gBoard[i][j].isShown = true;
+      renderCell({ i, j }, gBoard[i][j].minesAroundCount);
+      console.log('lucky');
+    } else {
+      console.log('safe');
+    }
   }
 }
 

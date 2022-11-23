@@ -4,7 +4,93 @@
     padding: 0;
 }
 
-table {
+.root {
+    height: 100vh;
+}
+
+
+body {
+    background-image: url('../assets/images/bg.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+
+.game {
+    position: relative;
+    width: 1200px;
+    height: 800px;
+    background: rgba(0, 0, 0, 0.2);
+
+    margin: 2rem auto;
+}
+
+header {
+    width: 100%;
+    height: 80px;
+    background: lightgray;
+}
+
+header table {
+    table-layout: fixed;
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    text-align: center;
+}
+
+.button {
+    background: rgba(255, 255, 0, 0.235);
+}
+
+
+/* main  */
+.game__container {
+    margin-top: 3em;
+    background: lightgray;
+}
+
+
+.records {
+    float: left;
+    width: 30%;
+    height: 100%;
+    background: wheat;
+}
+
+.record__line {
+    margin: 5px;
+    padding-top: 15px;
+    border: 1px solid black;
+}
+
+.record__name {
+    width: 10ch;
+}
+
+.record__time {
+    float: right;
+    margin-right: 1em;
+}
+
+
+/* GAME BOARD  */
+
+.mine-field {
+    float: right;
+    width: 60%
+}
+
+.board {
+    width: 100%;
+    height: 100%;
+}
+
+.mine-field table {
     border: 2px solid black;
 }
 
@@ -14,6 +100,7 @@ table {
     background-color: rgb(231, 217, 24);
 }
 
-.cell img {
-    width: 100%;
+img {
+    max-width: 20px;
+    height: auto
 }
