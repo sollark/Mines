@@ -1,0 +1,19 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+table {
+    border: 2px solid black;
+}
+
+.cell {
+    width: 30px;
+    height: 30px;
+    background-color: rgb(231, 217, 24);
+}
+
+.cell img {
+    width: 100%;
+}
