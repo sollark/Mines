@@ -3,21 +3,17 @@
 const gLevel = { SIZE: 4, MINES: 2 };
 const gGame = { isOn: false, shownCount: 0, secsPassed: 0 };
 let gBoard = null;
-let gTimerInterval = null;
 
 function initGame() {
-  console.log('onInit()');
+  // finish previous game
+  gGame.isOn && gameIsOver();
 
-  // initGameSettings();
   gBoard = buildBoard(gLevel.SIZE, gLevel.SIZE, gLevel.MINES);
   renderBoard(gBoard);
 
-  gLives = 3;
+  initSettings();
 
-  // activate game
   gGame.isOn = true;
-
-  // console.table(gBoard);
 }
 
 function onStartGameClick() {
@@ -41,8 +37,6 @@ function onLevelClick(level) {
   }
 }
 
-function showAllCells(gBoard) {}
-
 function checkGameOver() {
   for (var i = 0; i < gLevel.SIZE; i++) {
     for (var j = 0; j < gLevel.SIZE; j++) {
@@ -57,22 +51,17 @@ function checkGameOver() {
   return true;
 }
 
-function gameIsOver() {
+function gameIsOver(isWin = false) {
+  isWin ? updateEmoji(EMOJI_COOL) : updateEmoji(EMOJI_SAD);
+
   gGame.isOn = false;
   stopTimer();
 }
 
-// function expandShow(gBoard, elCell, i, j);
-
-function startTimer() {
-  gTimerInterval = timer();
-}
-
-function stopTimer() {
-  clearInterval(gTimerInterval);
-  gTimerInterval = null;
-}
-
-function onKeyUp(e) {
-  // console.log(e);
+function initSettings() {
+  updateEmoji(EMOJI_SMILE);
+  gLives = 3;
+  gHints = 3;
+  gHintActivated = false;
+  initMineCounter();
 }

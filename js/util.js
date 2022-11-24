@@ -81,18 +81,6 @@ function addToRenderCell(location, value) {
   elCell.innerHTML += value;
 }
 
-//??
-// Finds a values in MODEL and returns array with coordinates {i,j}
-function getCellsWith(mat, value) {
-  const cells = [];
-
-  for (let i = 1; i < mat.length - 1; i++)
-    for (let j = 1; j < mat[i].length - 1; j++) {
-      if (mat[i][j] === value) cells.push({ i, j });
-    }
-  return cells;
-}
-
 // Find neighbors
 function getNeighborsAround(mat, pos) {
   var neighbors = [];
@@ -143,40 +131,6 @@ function shuffle(arr) {
 
   return arr;
 }
-
-// Deep copy of array
-function copyArray(array) {
-  return JSON.parse(JSON.stringify(array));
-}
-
-// Random color string
-function randomColor() {
-  return '#' + Math.floor(Math.random() * 16777215).toString(16);
-}
-
-function timer() {
-  var timer = document.querySelector('.timer span');
-
-  var start = Date.now();
-
-  const interval = setInterval(function () {
-    var currTs = Date.now();
-
-    var secs = parseInt((currTs - start) / 1000);
-
-    var ms = currTs - start - secs * 1000;
-
-    ms = '000' + ms;
-
-    ms = ms.substring(ms.length - 2, ms.length);
-
-    timer.innerText = `${secs}:${ms}`;
-  }, 100);
-
-  return interval;
-}
-
-const c = console.log(document);
 
 // enable event on right mouse click
 window.oncontextmenu = (e) => {

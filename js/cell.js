@@ -3,9 +3,6 @@
 const MINE_IMG = '<img src="../assets/images/mine.png">';
 const FLAG_IMG = '<img src="../assets/images/flag.png">';
 const EXPLOSION_IMG = '<img class="big" src="../assets/images/explosion.gif">';
-const CROSS_IMG = '<img class="small" src="../assets/images/cross.jpeg">';
-
-let gLives = 3;
 
 function createCell() {
   return {
@@ -40,6 +37,7 @@ function cellClicked(elCell, i, j) {
   // RMB
   if (event.button === 2) {
     cell.isMarked = !cell.isMarked;
+    cell.isMarked ? decreaseMineCounter() : decreaseMineCounter();
     const value = cell.isMarked ? FLAG_IMG : '';
 
     renderCell(loc, value);
@@ -56,26 +54,21 @@ function cellClicked(elCell, i, j) {
 
     if (cell.isMine) {
       if (gLives) {
-        const elSapper = document.querySelector(
-          `.lives span:nth-of-type(${gLives})`
-        );
-        console.log('elSapper:', elSapper);
-        elSapper.innerHTML += CROSS_IMG;
-        gLives--;
-        console.log('gLives:', gLives);
+        removeLife();
+
+        updateEmoji(EMOJI_SWEATY);
 
         // mine is defective
-        addToRenderCell(loc, MINE_IMG);
+        renderMine(loc);
       } else {
         stepOnMine(loc);
         gameIsOver();
         return;
       }
     }
-
     // mines are close to the cell
     if (cell.minesAroundCount > 0) {
-      renderCell(loc, cell.minesAroundCount);
+      renderMineAroundCount(loc);
     }
     // mines are far away
     else if (!cell.isMine) {
@@ -83,10 +76,12 @@ function cellClicked(elCell, i, j) {
     }
   }
 
-  checkGameOver();
-}
+  // apply hint
+  if (gHintActivated) showNeighborsForSec(loc);
 
-// function cellMarked(elCell);
+  const isWin = checkGameOver();
+  isWin && gameIsOver(isWin);
+}
 
 function stepOnMine(loc) {
   //recover all mines
@@ -96,14 +91,12 @@ function stepOnMine(loc) {
   addToRenderCell(loc, EXPLOSION_IMG);
 }
 
-// zone with 0 mines around
+// cell with 0 mines around
 function stepOnSafeZone(loc) {
   const neighbors = getNeighborsAround(gBoard, { i: loc.i, j: loc.j });
   neighbors.forEach((loc) => cellClicked(getElByLocation(loc), loc.i, loc.j));
   neighbors.forEach((loc) => setClassTo(loc, 'open'));
 }
-
-// function stepOnDangerousZone(){}
 
 function recoverCellsWithMine() {
   for (let i = 0; i < gLevel.SIZE; i++)
@@ -157,4 +150,17 @@ function placeMines() {
     if (gBoard[randomLocation.i][randomLocation.j].isMine) counter++;
     gBoard[randomLocation.i][randomLocation.j].isMine = true;
   }
+}
+
+function renderMine(loc) {
+  addToRenderCell(loc, MINE_IMG);
+}
+
+function renderMineAroundCount(loc) {
+  const mineAmount = gBoard[loc.i][loc.j].minesAroundCount;
+  renderCell(loc, mineAmount);
+}
+
+function renderHidden(loc) {
+  renderCell(loc, '');
 }
