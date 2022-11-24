@@ -16,9 +16,8 @@ body {
     background-repeat: no-repeat;
 }
 
-
 .game {
-    position: relative;
+    /* position: relative; */
     width: 1200px;
     height: 700px;
     background: rgba(0, 0, 0, 0.2);
@@ -48,7 +47,6 @@ td {
     background: rgba(255, 255, 0, 0.235);
 }
 
-
 .lives span,
 .hints span {
     position: relative;
@@ -57,7 +55,6 @@ td {
 /* main  */
 .game__container {
     margin-top: 3em;
-
 }
 
 
