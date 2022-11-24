@@ -17,7 +17,7 @@
               <!-- timer  -->
               <td>
                 <span class="lebel"> Timer</span>
-                <div class="timer"><span>01</span>:<span>22</span></div>
+                <div class="timer"><span>00:00</span></div>
               </td>
               <!-- mines  -->
               <td>
@@ -30,7 +30,7 @@
               <td class="space">space</td>
 
               <td>
-                <div class="button">
+                <button class="button" onclick="onStartGameClick()">
                   <span>Start Game</span>
 
                   <span>
@@ -45,35 +45,35 @@
                       src="./assets/images/sad2.jpeg"
                       alt="" />
                   </span>
-                </div>
+                </button>
               </td>
 
               <td class="space">space</td>
 
+              <!-- level  -->
               <td>
-                <button class="level">Easy</button>
+                <button class="level" onclick="onLevelClick('Beginner')">
+                  Beginner
+                </button>
+                <button class="level" onclick="onLevelClick('Medium')">
+                  Medium
+                </button>
+                <button class="level" onclick="onLevelClick('Expert')">
+                  Expert
+                </button>
               </td>
 
               <td>
                 <span>Lives</span>
                 <div class="lives">
                   <span>
-                    <img
-                      class="mine_detector_img"
-                      src="./assets/images/sapper.png"
-                      alt="" />
+                    <img src="./assets/images/sapper.png" alt="" />
                   </span>
                   <span>
-                    <img
-                      class="mine_detector_img"
-                      src="./assets/images/sapper.png"
-                      alt="" />
+                    <img src="./assets/images/sapper.png" alt="" />
                   </span>
                   <span>
-                    <img
-                      class="mine_detector_img"
-                      src="./assets/images/sapper.png"
-                      alt="" />
+                    <img src="./assets/images/sapper.png" alt="" />
                   </span>
                 </div>
               </td>
@@ -121,14 +121,10 @@
           </div>
         </section>
       </main>
+      <footer>Andrey Solonikov</footer>
     </div>
     <script src="./js/util.js"></script>
     <script src="./js/cell.js"></script>
     <script src="./js/game.js"></script>
   </body>
 </html>
-
-<!-- 
- <table class="center">
-            <tbody class="board"></tbody>
-          </table> -->

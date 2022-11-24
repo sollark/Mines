@@ -23,23 +23,9 @@ function renderBoard(board) {
     strHTML += '<tr>\n';
 
     for (var j = 0; j < board[0].length; j++) {
-      const currCell = board[i][j];
-
       let cellClass = `cell cell-${i}-${j}`;
-      // console.log('cellClass:', cellClass);
-
-      // if (currCell.isMine) cellClass += ' mine';
-      // if (currCell.isShown) cellClass += ' open';
-      // else if (currCell.type === WALL) cellClass += ' wall';
 
       strHTML += `\t<td class="cell ${cellClass}"  onclick="cellClicked(this,${i},${j})" >\n`;
-      // console.log('currCell.minesAroundCount :', currCell.minesAroundCount);
-      if (!currCell.isShown) {
-        // strHTML += BALL_IMG;
-      } else if (currCell.isMine) {
-        strHTML += MINE_IMG;
-      } else if (currCell.minesAroundCount > 0)
-        strHTML += currCell.minesAroundCount;
 
       strHTML += '\t</td>\n';
     }
@@ -47,6 +33,11 @@ function renderBoard(board) {
   }
 
   elBoard.innerHTML = strHTML;
+}
+
+function getElByLocation(location) {
+  const cellSelector = '.' + getLocationClassName(location); // cell-i-j
+  return document.querySelector(cellSelector);
 }
 
 // ??
@@ -59,6 +50,14 @@ function setClassToAll(board, className) {
     }
 }
 
+function setClassTo(location, value) {
+  const cellSelector = '.' + getLocationClassName(location); // cell-i-j
+  // console.log('cellSelector:', cellSelector);
+  // console.log('value:', value);
+  const elCell = document.querySelector(cellSelector);
+  elCell.classList.add(value);
+}
+
 // Gets coordinates {i, j } and returns a coordinates class name
 function getLocationClassName(location) {
   const cellClass = 'cell-' + location.i + '-' + location.j;
@@ -68,11 +67,21 @@ function getLocationClassName(location) {
 // Convert a coordinate {i, j} to a selector and render a DOM value in that element
 function renderCell(location, value) {
   const cellSelector = '.' + getLocationClassName(location); // cell-i-j
-  console.log('cellSelector:', cellSelector);
+  // console.log('cellSelector:', cellSelector);
+  // console.log('value:', value);
   const elCell = document.querySelector(cellSelector);
   elCell.innerHTML = value;
 }
 
+function addToRenderCell(location, value) {
+  const cellSelector = '.' + getLocationClassName(location); // cell-i-j
+  // console.log('cellSelector:', cellSelector);
+  // console.log('value:', value);
+  const elCell = document.querySelector(cellSelector);
+  elCell.innerHTML += value;
+}
+
+//??
 // Finds a values in MODEL and returns array with coordinates {i,j}
 function getCellsWith(mat, value) {
   const cells = [];
@@ -92,7 +101,7 @@ function getNeighborsAround(mat, pos) {
     for (var j = pos.j - 1; j <= pos.j + 1; j++) {
       if (j < 0 || j >= mat[i].length) continue;
       if (i === pos.i && j === pos.j) continue;
-      if (mat[i][j].isMine) neighbors.push({ i: i, j: j });
+      neighbors.push({ i: i, j: j });
     }
   }
   return neighbors;
@@ -150,7 +159,7 @@ function timer() {
 
   var start = Date.now();
 
-  gTimerInterval = setInterval(function () {
+  const interval = setInterval(function () {
     var currTs = Date.now();
 
     var secs = parseInt((currTs - start) / 1000);
@@ -161,8 +170,10 @@ function timer() {
 
     ms = ms.substring(ms.length - 2, ms.length);
 
-    timer.innerText = `\n ${secs}:${ms}`;
+    timer.innerText = `${secs}:${ms}`;
   }, 100);
+
+  return interval;
 }
 
 const c = console.log(document);
@@ -170,7 +181,9 @@ const c = console.log(document);
 // enable event on right mouse click
 window.oncontextmenu = (e) => {
   e.preventDefault();
-  // console.log('right clicked');
+  // console.log('e:', e);
 
-  e.target.onclick();
+  e.target.onclick
+    ? e.target.onclick()
+    : e.originalTarget.offsetParent.onclick();
 };
