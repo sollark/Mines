@@ -3,7 +3,6 @@
 const gLevel = { SIZE: 4, MINES: 2 };
 const gGame = { isOn: false, shownCount: 0, secsPassed: 0 };
 let gBoard = null;
-let gLives = 3;
 let gTimerInterval = null;
 
 function initGame() {
