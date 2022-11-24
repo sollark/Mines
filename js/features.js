@@ -1,6 +1,6 @@
 'use strict';
 
-const CROSS_IMG = '<img class="small" src="../assets/images/cross.jpeg">';
+const CROSS_IMG = '<img class="small" src="assets/images/cross.jpeg">';
 
 let gLives = 3;
 let gHints = 3;
