@@ -1,8 +1,8 @@
 'use strict';
 
-const MINE_IMG = '<img src="../assets/images/mine.png">';
-const FLAG_IMG = '<img src="../assets/images/flag.png">';
-const EXPLOSION_IMG = '<img class="big" src="../assets/images/explosion.gif">';
+const MINE_IMG = '<img src="assets/images/mine.png">';
+const FLAG_IMG = '<img src="assets/images/flag.png">';
+const EXPLOSION_IMG = '<img class="big" src="assets/images/explosion.gif">';
 
 function createCell() {
   return {
