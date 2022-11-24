@@ -1,6 +1,6 @@
 'use strict';
 
-const CROSS_IMG = '<img class="small" src="assets/images/cross.jpeg">';
+const CROSS_IMG = '<img class="small z-index10" src="assets/images/cross.png">';
 
 let gLives = 3;
 let gHints = 3;
@@ -21,7 +21,7 @@ function removeHint() {
 }
 
 function onHintClick() {
-  if (gHintActivated) return;
+  if (gHintActivated || !gGame.isOn) return;
 
   gHintActivated = true;
 

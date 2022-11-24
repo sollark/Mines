@@ -1,11 +1,13 @@
 'use strict';
 
 let gTimerInterval = null;
+let gTimer = null;
 
 function timer() {
   var timer = document.querySelector('.timer span');
 
   var start = Date.now();
+  gTimer = start;
 
   const interval = setInterval(function () {
     var currTs = Date.now();
@@ -24,7 +26,12 @@ function timer() {
   return interval;
 }
 
+function setTimer() {
+  gTimer = Date.now() - gTimer;
+}
+
 function startTimer() {
+  gTimer = null;
   gTimerInterval = timer();
 }
 

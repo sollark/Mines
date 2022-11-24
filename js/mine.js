@@ -17,3 +17,9 @@ function decreaseMineCounter() {
   const elDisplayCounter = document.querySelector('.mines span');
   elDisplayCounter.innerHTML = --gMines;
 }
+
+function boomSound() {
+  var audio = new Audio('assets/sound/explosion.mp3');
+  audio.volume = 0.02;
+  audio.play();
+}

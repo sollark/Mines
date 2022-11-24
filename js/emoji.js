@@ -14,13 +14,10 @@ function updateEmoji(emoji) {
       resetBtn.innerHTML = EMOJI_SWEATY;
       setTimeout(() => {
         resetBtn.innerHTML = EMOJI_SMILE;
-      }, 2000);
+      }, 1000);
       break;
     case EMOJI_SAD:
-      setTimeout(() => {
-        resetBtn.innerHTML = EMOJI_SAD;
-      }, 1000);
-
+      resetBtn.innerHTML = EMOJI_SAD;
       break;
     case EMOJI_COOL:
       resetBtn.innerHTML = EMOJI_COOL;

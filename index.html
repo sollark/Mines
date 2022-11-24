@@ -2,18 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      http-equiv="X-UA-Compatible"
-      content="IE=edge"
-    />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
-    <link
-      rel="stylesheet"
-      href="style/main.css"
-    />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style/main.css" />
     <title>Mines</title>
   </head>
   <body onload="initGame()">
@@ -24,49 +15,37 @@
           <table>
             <tr>
               <!-- timer  -->
-              <td>
-                <span class="lebel"> Timer</span>
+              <td class="label">
+                <span> Timer</span>
                 <div class="timer"><span>00:00</span></div>
               </td>
               <!-- mines  -->
-              <td>
-                <span class="lebel"> Mines left</span>
+              <td class="label">
+                <span> Mines left</span>
                 <div class="mines">
                   <span>0</span>
                 </div>
               </td>
 
-              <td class="space">space</td>
+              <td class="space"></td>
 
               <td>
-                <button
-                  class="button reset-btn"
-                  onclick="onStartGameClick()"
-                >
+                <button class="button reset-btn" onclick="onStartGameClick()">
                   <span class="emoji"> </span>
                 </button>
               </td>
 
-              <td class="space">space</td>
+              <td class="space"></td>
 
               <!-- level  -->
               <td>
-                <button
-                  class="level"
-                  onclick="onLevelClick('Beginner')"
-                >
+                <button class="level" onclick="onLevelClick('Beginner')">
                   Beginner
                 </button>
-                <button
-                  class="level"
-                  onclick="onLevelClick('Medium')"
-                >
+                <button class="level" onclick="onLevelClick('Medium')">
                   Medium
                 </button>
-                <button
-                  class="level"
-                  onclick="onLevelClick('Expert')"
-                >
+                <button class="level" onclick="onLevelClick('Expert')">
                   Expert
                 </button>
               </td>
@@ -75,48 +54,27 @@
                 <span>Lives</span>
                 <div class="lives">
                   <span>
-                    <img
-                      src="./assets/images/sapper.png"
-                      alt=""
-                    />
+                    <img src="./assets/images/sapper.png" alt="" />
                   </span>
                   <span>
-                    <img
-                      src="./assets/images/sapper.png"
-                      alt=""
-                    />
+                    <img src="./assets/images/sapper.png" alt="" />
                   </span>
                   <span>
-                    <img
-                      src="./assets/images/sapper.png"
-                      alt=""
-                    />
+                    <img src="./assets/images/sapper.png" alt="" />
                   </span>
                 </div>
               </td>
               <td>
                 <span>Hints</span>
-                <div
-                  class="hints"
-                  onclick="onHintClick()"
-                >
+                <div class="hints" onclick="onHintClick()">
                   <span>
-                    <img
-                      src="./assets/images/dog.jpg"
-                      alt=""
-                    />
+                    <img src="./assets/images/dog.png" alt="" />
                   </span>
                   <span>
-                    <img
-                      src="./assets/images/dog.jpg"
-                      alt=""
-                    />
+                    <img src="./assets/images/dog.png" alt="" />
                   </span>
                   <span>
-                    <img
-                      src="./assets/images/dog.jpg"
-                      alt=""
-                    />
+                    <img src="./assets/images/dog.png" alt="" />
                   </span>
                 </div>
               </td>
@@ -130,38 +88,12 @@
           <!-- records -->
           <aside class="records">
             Records
-            <div class="record__line">
-              <span class="record__name">name:Andrey</span>
-              <span class="record__time">time: 1:00</span>
-            </div>
-            <div class="record__line">
-              <span class="record__name">name:Andrey</span>
-              <span class="record__time">time: 1:00</span>
-            </div>
-            <div class="record__line">
-              <span class="record__name">name:Andrey Solonikov</span>
-              <span class="record__time">time: 1:00</span>
-            </div>
-            <div class="record__line">
-              <span class="record__name">name:Andrey</span>
-              <span class="record__time">time: 1:00</span>
-            </div>
-            <div class="record__line">
-              <span class="record__name">name:Andrey</span>
-              <span class="record__time">time: 1:00</span>
-            </div>
-            <div class="record__line">
-              <span class="record__name">name:Andrey</span>
-              <span class="record__time">time: 1:00</span>
-            </div>
+            <ul class="leaders"></ul>
           </aside>
 
           <div class="mine-field">
             <!-- board  -->
-            <table
-              class="center"
-              oncontextmenu="return false;"
-            >
+            <table class="center" oncontextmenu="return false;">
               <tbody class="board"></tbody>
             </table>
           </div>
@@ -173,6 +105,7 @@
     <script src="./js/timer.js"></script>
     <script src="./js/emoji.js"></script>
     <script src="./js/util.js"></script>
+    <script src="./js/leaders.js"></script>
     <script src="./js/features.js"></script>
     <script src="./js/cell.js"></script>
     <script src="./js/game.js"></script>

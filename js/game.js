@@ -12,6 +12,7 @@ function initGame() {
   renderBoard(gBoard);
 
   initSettings();
+  initLeaderList();
 
   gGame.isOn = true;
 }
@@ -35,14 +36,16 @@ function onLevelClick(level) {
       gLevel.MINES = 32;
       break;
   }
+
+  initGame();
 }
 
 function checkGameOver() {
   for (var i = 0; i < gLevel.SIZE; i++) {
     for (var j = 0; j < gLevel.SIZE; j++) {
       const cell = gBoard[i][j];
-
-      if (cell.isMine && !cell.isMarked) return false;
+      if (cell.isMine && !cell.isMarked && cell.isMine && !cell.isShown)
+        return false;
       if (!cell.isMine && !cell.isShown) return false;
     }
   }
@@ -56,12 +59,15 @@ function gameIsOver(isWin = false) {
 
   gGame.isOn = false;
   stopTimer();
+
+  isWin && checkForLeader();
 }
 
 function initSettings() {
   updateEmoji(EMOJI_SMILE);
   gLives = 3;
   gHints = 3;
+  gPlayer.time = null;
   gHintActivated = false;
   initMineCounter();
 }

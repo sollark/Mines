@@ -1,8 +1,9 @@
 'use strict';
 
 const MINE_IMG = '<img src="assets/images/mine.png">';
-const FLAG_IMG = '<img src="assets/images/flag.png">';
-const EXPLOSION_IMG = '<img class="big" src="assets/images/explosion.gif">';
+const FLAG_IMG = '<img class="medium z-index5" src="assets/images/flag.png">';
+const EXPLOSION_IMG =
+  '<img class="big z-index10" src="assets/images/explosion.gif">';
 
 function createCell() {
   return {
@@ -14,8 +15,7 @@ function createCell() {
 }
 
 function cellClicked(elCell, i, j) {
-  // console.log('elCell:', elCell, 'i', i, 'j', j);
-  // console.log('e', event);
+  // console.log('cell clicked');
 
   // if game is off, ignore all clicks
   if (!gGame.isOn) return;
@@ -37,7 +37,7 @@ function cellClicked(elCell, i, j) {
   // RMB
   if (event.button === 2) {
     cell.isMarked = !cell.isMarked;
-    cell.isMarked ? decreaseMineCounter() : decreaseMineCounter();
+    cell.isMarked ? decreaseMineCounter() : increaseMineCounter();
     const value = cell.isMarked ? FLAG_IMG : '';
 
     renderCell(loc, value);
@@ -53,6 +53,8 @@ function cellClicked(elCell, i, j) {
     // there is a mine, finish game
 
     if (cell.isMine) {
+      decreaseMineCounter();
+
       if (gLives) {
         removeLife();
 
@@ -89,6 +91,8 @@ function stepOnMine(loc) {
 
   //explode image
   addToRenderCell(loc, EXPLOSION_IMG);
+
+  boomSound();
 }
 
 // cell with 0 mines around
@@ -162,5 +166,7 @@ function renderMineAroundCount(loc) {
 }
 
 function renderHidden(loc) {
-  renderCell(loc, '');
+  gBoard[loc.i][loc.j].isMarked
+    ? renderCell(loc, FLAG_IMG)
+    : renderCell(loc, '');
 }
