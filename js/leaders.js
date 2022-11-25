@@ -33,7 +33,7 @@ function loadLeaders() {
 }
 
 function checkIfLeader(time) {
-  const gameTime = time;
+  const gameTime = gDurationTime;
 
   // if player has better time than last in gLeaders
   if (gLeaders.length < 10 || gDurationTime < gLeaders.at(-1).time) {

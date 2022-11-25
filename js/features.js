@@ -1,6 +1,7 @@
 'use strict';
 
-const CROSS_IMG = '<img class="small z-index10" src="assets/images/cross.png">';
+const CROSS_IMG =
+  '<img class="small z-index10 cross" src="assets/images/cross.png">';
 
 let gLives = 3;
 let gHints = 3;
@@ -48,4 +49,9 @@ function showCellForSec(loc) {
   setTimeout(() => {
     renderHidden(loc);
   }, 1000);
+}
+
+function removeCrossImgs() {
+  const crossImages = document.querySelectorAll('.cross');
+  crossImages.forEach((cross) => cross.remove());
 }

@@ -9,6 +9,7 @@ const gGame = { isOn: false, shownCount: 0, secsPassed: 0 };
 let gBoard = null;
 
 function initGame() {
+  console.log('start initgame');
   // finish previous game
   gGame.isOn && gameIsOver();
 
@@ -19,6 +20,7 @@ function initGame() {
   initLeaderList();
 
   gGame.isOn = true;
+  console.log('end initgame');
 }
 
 function onStartGameClick() {
@@ -56,16 +58,20 @@ function checkGameOver() {
 }
 
 function gameIsOver(isWin = false) {
+  console.log('game is over');
   isWin ? updateEmoji(EMOJI_COOL) : updateEmoji(EMOJI_SAD);
 
   gGame.isOn = false;
-  isWin && checkIfLeader(stopTimer());
+  stopTimer();
+  isWin && checkIfLeader();
 }
 
 function initSettings() {
   updateEmoji(EMOJI_SMILE);
+  removeCrossImgs();
   gLives = 3;
   gHints = 3;
   gHintActivated = false;
+  clearTimer();
   initMineCounter();
 }
