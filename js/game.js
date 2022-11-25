@@ -48,13 +48,10 @@ function checkGameOver() {
   for (var i = 0; i < gLevel.SIZE; i++) {
     for (var j = 0; j < gLevel.SIZE; j++) {
       const cell = gBoard[i][j];
-      if (cell.isMine && !cell.isMarked && cell.isMine && !cell.isShown)
-        return false;
+      if (cell.isMine && !cell.isMarked && !cell.isShown) return false;
       if (!cell.isMine && !cell.isShown) return false;
     }
   }
-  gameIsOver();
-
   return true;
 }
 
@@ -62,7 +59,6 @@ function gameIsOver(isWin = false) {
   isWin ? updateEmoji(EMOJI_COOL) : updateEmoji(EMOJI_SAD);
 
   gGame.isOn = false;
-
   isWin && checkIfLeader(stopTimer());
 }
 
@@ -70,7 +66,6 @@ function initSettings() {
   updateEmoji(EMOJI_SMILE);
   gLives = 3;
   gHints = 3;
-  gPlayer.time = null;
   gHintActivated = false;
   initMineCounter();
 }

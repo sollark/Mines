@@ -12,9 +12,6 @@ function updateEmoji(emoji) {
       break;
     case EMOJI_SWEATY:
       resetBtn.innerHTML = EMOJI_SWEATY;
-      setTimeout(() => {
-        resetBtn.innerHTML = EMOJI_SMILE;
-      }, 1000);
       break;
     case EMOJI_SAD:
       resetBtn.innerHTML = EMOJI_SAD;

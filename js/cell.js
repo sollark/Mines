@@ -23,58 +23,58 @@ function cellClicked(elCell, i, j) {
   // start timer on first click and place mines
   if (!gTimerInterval) {
     startTimer();
+
+    // MODEL
     placeMines();
     setMinesNegsCount(gBoard);
   }
 
-  const cell = gBoard[i][j];
-
-  // if cel is open, ignore all clicks. recursion stopper
-  if (cell.isShown) return;
-
+  const currCell = gBoard[i][j];
   const loc = { i, j };
 
-  // RMB
-  if (event.button === 2) {
-    cell.isMarked = !cell.isMarked;
-    cell.isMarked ? decreaseMineCounter() : increaseMineCounter();
-    const value = cell.isMarked ? FLAG_IMG : '';
+  // if cel is open, ignore all clicks. recursion stopper
+  if (currCell.isShown) return;
 
-    renderCell(loc, value);
+  // RMB (flag marker)
+  if (event.button === 2) {
+    currCell.isMarked = !currCell.isMarked;
+    currCell.isMarked ? decreaseMineCounter() : increaseMineCounter();
+    const cellValue = currCell.isMarked ? FLAG_IMG : '';
+
+    renderCell(loc, cellValue);
   }
   // LMB but cell is marked, do nothing
-  else if (cell.isMarked) return;
+  else if (currCell.isMarked) return;
   // LMB
   else {
     // update DOM and MODEL
-    cell.isShown = true;
+    currCell.isShown = true;
     elCell.classList.add('open');
 
-    // there is a mine, finish game
-
-    if (cell.isMine) {
+    if (currCell.isMine) {
       decreaseMineCounter();
+      renderMine(loc);
 
+      // mine is defective
       if (gLives) {
         removeLife();
-
-        updateEmoji(EMOJI_SWEATY);
-
-        // mine is defective
-        renderMine(loc);
-      } else {
+      }
+      // explosion
+      else {
         stepOnMine(loc);
         gameIsOver();
         return;
       }
     }
-    // mines are close to the cell
-    if (cell.minesAroundCount > 0) {
+    // if there are mine around
+    if (currCell.minesAroundCount > 0) {
       renderMineAroundCount(loc);
     }
+
     // mines are far away
-    else if (!cell.isMine) {
-      stepOnSafeZone(loc);
+    else if (!currCell.isMine) {
+      currCell.isShown = false;
+      expendShow(gBoard, elCell, loc);
     }
   }
 
@@ -90,16 +90,30 @@ function stepOnMine(loc) {
   recoverCellsWithMine();
 
   //explode image
-  addToRenderCell(loc, EXPLOSION_IMG);
-
+  addToCellValue(loc, EXPLOSION_IMG);
   boomSound();
 }
 
-// cell with 0 mines around
-function stepOnSafeZone(loc) {
-  const neighbors = getNeighborsAround(gBoard, { i: loc.i, j: loc.j });
-  neighbors.forEach((loc) => cellClicked(getElByLocation(loc), loc.i, loc.j));
-  neighbors.forEach((loc) => setClassTo(loc, 'open'));
+function expendShow(board, elCell, loc) {
+  const currCell = board[loc.i][loc.j];
+  if (currCell.minesAroundCount > 0 || currCell.isShown) return;
+
+  currCell.isShown = true;
+  elCell.classList.add('open');
+
+  const neighbors = getNeighborsAround(board, { i: loc.i, j: loc.j });
+  neighbors.forEach((neighbor) => {
+    const neighborCell = board[neighbor.i][neighbor.j];
+    const elNeighbor = getElByLocation(neighbor);
+
+    if (neighborCell.minesAroundCount > 0) {
+      neighborCell.isShown = true;
+      elNeighbor.classList.add('open');
+      renderMineAroundCount(neighbor);
+    } else {
+      expendShow(board, elNeighbor, neighbor);
+    }
+  });
 }
 
 function recoverCellsWithMine() {
@@ -119,27 +133,12 @@ function setMinesNegsCount(board) {
     for (let j = 0; j < board.length; j++) {
       if (board[i][j].isMine) continue;
 
-      // const numMinesAround = getNeighborsAround(board, { i, j }).length;
-      const neighbors = getNeighborsAround(board, { i, j });
-      const neighborsWithMine = neighbors.filter(
+      const neighborsLoc = getNeighborsAround(board, { i, j });
+      const neighborsWithMineLoc = neighborsLoc.filter(
         (neighbor) => gBoard[neighbor.i][neighbor.j].isMine
       );
 
-      // console.log(
-      //   'i',
-      //   i,
-      //   'j',
-      //   j,
-      //   'neighbors:',
-      //   neighbors,
-      //   'neighborsWithMine',
-      //   neighborsWithMine,
-      //   gBoard
-      // );
-      const mineCount = neighborsWithMine.length;
-
-      // console.log('neighbors:', neighbors, 'mineCount', mineCount);
-      board[i][j].minesAroundCount = mineCount;
+      board[i][j].minesAroundCount = neighborsWithMineLoc.length;
     }
 }
 
@@ -152,12 +151,12 @@ function placeMines() {
       j: getRandomInt(0, gLevel.SIZE - 1),
     };
     if (gBoard[randomLocation.i][randomLocation.j].isMine) counter++;
-    gBoard[randomLocation.i][randomLocation.j].isMine = true;
+    else gBoard[randomLocation.i][randomLocation.j].isMine = true;
   }
 }
 
 function renderMine(loc) {
-  addToRenderCell(loc, MINE_IMG);
+  addToCellValue(loc, MINE_IMG);
 }
 
 function renderMineAroundCount(loc) {
