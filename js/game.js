@@ -9,7 +9,6 @@ const gGame = { isOn: false, shownCount: 0, secsPassed: 0 };
 let gBoard = null;
 
 function initGame() {
-  console.log('start initgame');
   // finish previous game
   gGame.isOn && gameIsOver();
 
@@ -20,7 +19,6 @@ function initGame() {
   initLeaderList();
 
   gGame.isOn = true;
-  console.log('end initgame');
 }
 
 function onStartGameClick() {

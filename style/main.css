@@ -21,7 +21,6 @@ img.big {
     position: absolute;
     top: -20%;
     left: -15%;
-
     max-width: 50px;
 }
 
@@ -29,7 +28,6 @@ img.small {
     position: absolute;
     top: -50%;
     left: 5%;
-
     max-width: 20px;
 }
 
@@ -37,7 +35,6 @@ img.medium {
     position: absolute;
     top: 0;
     left: 5%;
-
     max-width: 40px;
 }
 
@@ -45,6 +42,14 @@ ul,
 li {
     text-decoration: none;
     list-style: none;
+}
+
+button {
+    padding: .5em;
+    color: aliceblue;
+    background-color: green;
+
+    cursor: pointer;
 }
 
 .root {
@@ -60,7 +65,6 @@ body {
 }
 
 .game {
-    /* position: relative; */
     width: 1200px;
     height: 700px;
     background: rgba(0, 0, 0, 0.2);
@@ -70,7 +74,7 @@ body {
 
 header {
     width: 100%;
-    height: 80px;
+    height: 120px;
     background: rgb(100, 161, 92);
 }
 
@@ -79,8 +83,6 @@ header table {
     width: 100%;
     height: 100%;
     border-collapse: collapse;
-
-
 }
 
 th,
@@ -94,35 +96,34 @@ td.space {
 }
 
 td.label {
-    width: 130px;
-}
-
-td button {
-    cursor: pointer;
-    padding: .2em;
+    width: 120px;
 }
 
 td .emoji {
-    font-size: 2rem;
+    font-size: 2.5rem;
     text-shadow: 2px 2px #665c01;
 }
 
 header img {
-    max-width: 35px;
-}
-
-.button {
-    background: rgba(255, 255, 0, 0.235);
+    max-width: 40px;
 }
 
 .reset-btn {
     border-radius: 5px;
-    padding: .5em;
+    padding: 1em;
 }
 
 .lives span,
 .hints span {
     position: relative;
+}
+
+.header__title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: rgb(51, 54, 6);
+
+    line-height: 2.5;
 }
 
 /* main  */
@@ -133,7 +134,7 @@ header img {
 
 .records {
     display: inline-block;
-    padding: 1em 3em;
+    padding: 1em 3em 0 1em;
 
     text-align: left;
     line-height: 2.5;
@@ -149,11 +150,7 @@ header img {
 }
 
 .records button {
-    /* margin-left: 5em; */
     float: right;
-    padding: 0.3em;
-    color: aliceblue;
-    background-color: green;
 }
 
 .records .time {
@@ -161,7 +158,6 @@ header img {
 }
 
 /* GAME BOARD  */
-
 .mine-field {
     height: 510px;
 
@@ -170,7 +166,6 @@ header img {
 }
 
 .mine-field table {
-
     margin: auto;
 }
 
@@ -186,8 +181,8 @@ header img {
 
 .cell {
     position: relative;
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     background-color: rgb(231, 217, 24);
 }
 
