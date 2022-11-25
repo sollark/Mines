@@ -133,15 +133,27 @@ header img {
 
 .records {
     display: inline-block;
-    padding: 3em;
+    padding: 1em 3em;
 
     text-align: left;
     line-height: 2.5;
 
     vertical-align: top;
     width: 30%;
-    height: 510px;
-    background: rgb(100, 161, 92);
+    height: 550px;
+    background: rgb(100, 161, 92, 0.8);
+}
+
+.records h3 {
+    display: inline-block;
+}
+
+.records button {
+    /* margin-left: 5em; */
+    float: right;
+    padding: 0.3em;
+    color: aliceblue;
+    background-color: green;
 }
 
 .records .time {

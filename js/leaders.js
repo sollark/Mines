@@ -7,19 +7,34 @@ let gPlayer = {
   time: 0,
 };
 
+function onClearLeadersClick() {
+  clearLeaderRecords();
+}
+
 function initLeaderList() {
-  loadLeaders();
   // clearLeaderRecords();
-  renderLeaders(gLeaders);
+  loadLeaders();
 }
 
 function loadLeaders() {
-  const leadersFromStorage = loadFromLS('leaders');
+  let gLeaders = [];
+  let leadersFromStorage = null;
 
+  switch (gLevel.SIZE) {
+    case EASY:
+      leadersFromStorage = loadFromLS('easyLeaders');
+      break;
+    case MEDIUM:
+      leadersFromStorage = loadFromLS('mediumLeaders');
+      break;
+    case EASY:
+      leadersFromStorage = loadFromLS('expertLeaders');
+      break;
+  }
   if (leadersFromStorage) {
     gLeaders = leadersFromStorage;
-    renderLeaders(gLeaders);
   }
+  renderLeaders(gLeaders);
 }
 
 function checkIfLeader(time) {
@@ -78,11 +93,34 @@ function saveToLeaders(player) {
     return leader1.time - leader2.time;
   });
 
-  saveToLS('leaders', gLeaders);
+  switch (gLevel.SIZE) {
+    case EASY:
+      saveToLS('easyLeaders', gLeaders);
+      break;
+    case MEDIUM:
+      saveToLS('mediumLeaders', gLeaders);
+      break;
+    case EASY:
+      saveToLS('expertLeaders', gLeaders);
+      break;
+  }
 }
 
 function clearLeaderRecords() {
-  localStorage.removeItem('leaders');
+  gLeaders = [];
+  switch (gLevel.SIZE) {
+    case EASY:
+      removeFromLS('easyLeaders');
+      break;
+    case MEDIUM:
+      removeFromLS('mediumLeaders');
+      break;
+    case EASY:
+      removeFromLS('expertLeaders');
+      break;
+  }
+
+  renderLeaders(gLeaders);
 }
 
 {

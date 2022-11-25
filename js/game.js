@@ -1,6 +1,10 @@
 'use strict';
 
-const gLevel = { SIZE: 4, MINES: 2 };
+const EASY = 4;
+const MEDIUM = 8;
+const EXPERT = 12;
+
+const gLevel = { SIZE: EASY, MINES: 2 };
 const gGame = { isOn: false, shownCount: 0, secsPassed: 0 };
 let gBoard = null;
 
@@ -24,15 +28,15 @@ function onStartGameClick() {
 function onLevelClick(level) {
   switch (level) {
     case 'Beginner':
-      gLevel.SIZE = 4;
+      gLevel.SIZE = EASY;
       gLevel.MINES = 2;
       break;
     case 'Medium':
-      gLevel.SIZE = 8;
+      gLevel.SIZE = MEDIUM;
       gLevel.MINES = 14;
       break;
     case 'Expert':
-      gLevel.SIZE = 12;
+      gLevel.SIZE = EXPERT;
       gLevel.MINES = 32;
       break;
   }
