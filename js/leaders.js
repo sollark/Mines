@@ -1,39 +1,55 @@
 'use strict';
 
-let gLeaders = [{ name: 'Andrey', time: 20000 }];
+let gLeaders = [];
 
 let gPlayer = {
-  name: 'Moshe',
-  time: '',
+  name: 'Player',
+  time: 0,
 };
-
-// load leaders from a storage
-const leadersFromStorage = JSON.parse(localStorage.getItem('leaders'));
 
 function initLeaderList() {
   loadLeaders();
-  renderLeaders(gLeaders);
-}
-
-function checkForLeader() {
-  setTimer();
-  gPlayer.time = gTimer;
-
-  // TODO compare with leader list
-
-  const playerName = prompt('What is your name?');
-  gPlayer.name = playerName;
-
-  if (gLeaders.length === 10) gLeaders.pop();
-  saveToLeaders(gPlayer);
+  // clearLeaderRecords();
   renderLeaders(gLeaders);
 }
 
 function loadLeaders() {
+  const leadersFromStorage = loadFromLS('leaders');
+
   if (leadersFromStorage) {
     gLeaders = leadersFromStorage;
     renderLeaders(gLeaders);
   }
+}
+
+function checkIfLeader(time) {
+  const gameTime = time;
+
+  // if player has better time than last in gLeaders
+  if (
+    !gLeaders.length ||
+    gLeaders.length < 10 ||
+    gDurationTime < gLeaders.at(-1).time
+  ) {
+    // create leader object
+    let playerName = '';
+    while (true) {
+      playerName = prompt('What is your name?');
+      if (playerName.length > 15) alert('Too long');
+      else break;
+    }
+
+    gPlayer.name = playerName;
+    gPlayer.time = gameTime;
+
+    // if gLeaders reach 10 records
+    if (gLeaders.length === 10) gLeaders.pop();
+
+    //save
+    saveToLeaders(gPlayer);
+  }
+
+  renderLeaders(gLeaders);
 }
 
 function renderLeaders(leaders) {
@@ -41,8 +57,13 @@ function renderLeaders(leaders) {
   let strHTML = '';
 
   for (let leader of leaders) {
-    strHTML += `<li>
-            ${leader.name}  time: ${new Date(leader.time).getSeconds()}
+    strHTML +=
+      `<li>
+        <span class='name'>${leader.name} </span>
+        <span class='time'> 
+        time: ` +
+      ('' + leader.time).toMMSS() +
+      `</span>
       </li>`;
   }
 
@@ -52,5 +73,18 @@ function renderLeaders(leaders) {
 function saveToLeaders(player) {
   gLeaders.push(player);
 
-  localStorage.setItem('leaders', JSON.stringify(gLeaders));
+  // sort leaders by game time
+  gLeaders.sort((leader1, leader2) => {
+    return leader1.time - leader2.time;
+  });
+
+  saveToLS('leaders', gLeaders);
+}
+
+function clearLeaderRecords() {
+  localStorage.removeItem('leaders');
+}
+
+{
+  /* <ul class='leaders'></ul>; */
 }

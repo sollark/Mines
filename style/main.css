@@ -41,6 +41,12 @@ img.medium {
     max-width: 40px;
 }
 
+ul,
+li {
+    text-decoration: none;
+    list-style: none;
+}
+
 .root {
     height: 100vh;
 }
@@ -127,15 +133,19 @@ header img {
 
 .records {
     display: inline-block;
-    padding: 1em;
+    padding: 3em;
 
-    text-align: center;
-    line-height: 3;
+    text-align: left;
+    line-height: 2.5;
 
     vertical-align: top;
     width: 30%;
     height: 510px;
     background: rgb(100, 161, 92);
+}
+
+.records .time {
+    float: inline-end;
 }
 
 /* GAME BOARD  */

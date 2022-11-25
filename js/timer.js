@@ -1,41 +1,71 @@
 'use strict';
 
 let gTimerInterval = null;
-let gTimer = null;
+let gStartTime = 0;
+let gDurationTime = 0;
 
 function timer() {
-  var timer = document.querySelector('.timer span');
+  var elTimer = document.querySelector('.timer span');
 
-  var start = Date.now();
-  gTimer = start;
+  gStartTime = Date.now();
 
   const interval = setInterval(function () {
-    var currTs = Date.now();
-
-    var secs = parseInt((currTs - start) / 1000);
-
-    var ms = currTs - start - secs * 1000;
-
-    ms = '000' + ms;
-
-    ms = ms.substring(ms.length - 2, ms.length);
-
-    timer.innerText = `${secs}:${ms}`;
+    var diff = Date.now() - gStartTime;
+    elTimer.innerText = ('' + diff).toMMSS();
   }, 100);
 
   return interval;
 }
 
-function setTimer() {
-  gTimer = Date.now() - gTimer;
+function clearTimer() {
+  gStartTime = 0;
+  gDurationTime = 0;
+
+  var elTimer = document.querySelector('.timer span');
+  elTimer.innerText = '00:00';
+}
+
+function getGameTime() {
+  return Date.now() - gStartTime;
 }
 
 function startTimer() {
-  gTimer = null;
+  clearTimer();
   gTimerInterval = timer();
 }
 
 function stopTimer() {
   clearInterval(gTimerInterval);
   gTimerInterval = null;
+
+  gDurationTime = getGameTime();
+
+  return gDurationTime;
 }
+
+String.prototype.toMMSS = function () {
+  const dateValue = parseInt(this, 10); // don't forget the second param
+  const date = new Date(dateValue);
+
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  var seconds = date.getSeconds();
+  var milliseconds = date.getMilliseconds();
+
+  if (hours < 10) {
+    hours = '0' + hours;
+  }
+  if (minutes < 10) {
+    minutes = '0' + minutes;
+  }
+  if (seconds < 10) {
+    seconds = '0' + seconds;
+  }
+  return minutes + ':' + seconds;
+};
+
+/* 
+ <div class='timer'>
+   <span>00:00</span>
+ </div>;
+ */

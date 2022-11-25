@@ -58,9 +58,8 @@ function gameIsOver(isWin = false) {
   isWin ? updateEmoji(EMOJI_COOL) : updateEmoji(EMOJI_SAD);
 
   gGame.isOn = false;
-  stopTimer();
 
-  isWin && checkForLeader();
+  isWin && checkIfLeader(stopTimer());
 }
 
 function initSettings() {
