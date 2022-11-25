@@ -134,14 +134,14 @@ header img {
 
 .records {
     display: inline-block;
-    padding: 1em 3em 0 1em;
+    padding: 2em 3em 0 2em;
 
     text-align: left;
     line-height: 2.5;
 
     vertical-align: top;
     width: 30%;
-    height: 550px;
+    height: 533px;
     background: rgb(100, 161, 92, 0.8);
 }
 
@@ -159,7 +159,7 @@ header img {
 
 /* GAME BOARD  */
 .mine-field {
-    height: 510px;
+    height: 550px;
 
     display: inline-block;
     width: 60%;
@@ -181,8 +181,8 @@ header img {
 
 .cell {
     position: relative;
-    width: 45px;
-    height: 45px;
+    width: 42px;
+    height: 42px;
     background-color: rgb(231, 217, 24);
 }
 
