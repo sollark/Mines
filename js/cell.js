@@ -46,6 +46,11 @@ function cellClicked(elCell, i, j) {
   }
   // LMB but cell is marked, do nothing
   else if (currCell.isMarked) return;
+  // hint is activated
+  else if (gHintActivated) {
+    showNeighborsForSec(loc);
+    return;
+  }
   // LMB
   else {
     // update DOM and MODEL
@@ -79,9 +84,6 @@ function cellClicked(elCell, i, j) {
       expendShow(gBoard, elCell, loc);
     }
   }
-
-  // apply hint
-  if (gHintActivated) showNeighborsForSec(loc);
 
   const isWin = checkGameOver();
   isWin && gameIsOver(isWin);

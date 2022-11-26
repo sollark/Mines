@@ -37,6 +37,8 @@ function showNeighborsForSec(loc) {
   neighbors.forEach((neighbor) => {
     showCellForSec(neighbor);
   });
+
+  showCellForSec(loc);
 }
 
 function showCellForSec(loc) {
