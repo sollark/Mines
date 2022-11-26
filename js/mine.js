@@ -20,6 +20,13 @@ function decreaseMineCounter() {
 
 function boomSound() {
   var audio = new Audio('assets/sound/explosion.mp3');
-  audio.volume = 0.02;
+  audio.volume = 0.17;
+  audio.play();
+}
+
+function metalSound() {
+  var audio = new Audio('assets/sound/click.mp3');
+  audio.volume = 0.5;
+  audio.playbackRate = 2;
   audio.play();
 }

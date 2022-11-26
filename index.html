@@ -19,6 +19,7 @@
                 <span class="header__title">Timer</span>
                 <div class="timer"><span>00:00</span></div>
               </td>
+
               <!-- mines  -->
               <td class="label">
                 <span class="header__title">Mines</span>
@@ -29,6 +30,7 @@
 
               <td class="space"></td>
 
+              <!-- reset emoji  -->
               <td>
                 <button class="button reset-btn" onclick="onStartGameClick()">
                   <span class="emoji"> </span>
@@ -50,6 +52,7 @@
                 </button>
               </td>
 
+              <!-- lives  -->
               <td>
                 <span class="header__title">Lives</span>
                 <div class="lives">
@@ -64,6 +67,7 @@
                   </span>
                 </div>
               </td>
+              <!-- hints  -->
               <td>
                 <span class="header__title">Hints</span>
                 <div class="hints" onclick="onHintClick()">
@@ -78,29 +82,41 @@
                   </span>
                 </div>
               </td>
-              <!-- <td class="b">Element B</td> -->
             </tr>
           </table>
         </header>
 
         <!-- main part  -->
         <section class="game__container">
-          <!-- records -->
-          <aside class="records">
-            <h3>Records</h3>
-            <button onclick="onClearLeadersClick()">Clear all records</button>
-            <ul class="leaders"></ul>
-          </aside>
-
           <div class="mine-field">
             <!-- board  -->
             <table class="center" oncontextmenu="return false;">
               <tbody class="board"></tbody>
             </table>
           </div>
+
+          <!-- records -->
+          <aside class="records">
+            <h3>Records</h3>
+            <button onclick="onClearLeadersClick()">Clear records</button>
+            <ul class="leaders"></ul>
+          </aside>
         </section>
       </main>
-      <footer>Andrey Solonikov</footer>
+
+      <!-- footer  -->
+      <footer>
+        <p>Andrey Solonikov</p>
+
+        <!-- copyright -->
+        <p>
+          <a
+            style="color: aqua"
+            href="https://pixabay.com/sound-effects/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=92134"
+            >Pixabay</a
+          >
+        </p>
+      </footer>
     </div>
     <script src="./js/mine.js"></script>
     <script src="./js/timer.js"></script>

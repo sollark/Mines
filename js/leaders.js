@@ -7,8 +7,9 @@ function onClearLeadersClick() {
 }
 
 function initLeaderList() {
-  // clearLeaderRecords();
+  gLeaders = [];
   loadLeaders();
+  renderLeaders(gLeaders);
 }
 
 function loadLeaders() {
@@ -21,31 +22,21 @@ function loadLeaders() {
     case MEDIUM:
       leadersFromStorage = loadFromLS('mediumLeaders');
       break;
-    case EASY:
+    case EXPERT:
       leadersFromStorage = loadFromLS('expertLeaders');
       break;
   }
   if (leadersFromStorage) {
     gLeaders = leadersFromStorage;
   }
-
-  renderLeaders(gLeaders);
 }
 
 function checkIfLeader(time) {
-  const gameTime = gDurationTime;
-
   // if player has better time than last in gLeaders
   if (gLeaders.length < 10 || gDurationTime < gLeaders.at(-1).time) {
     // create leader object
-    let playerName = 'Player';
-    while (true) {
-      playerName = prompt('What is your name?');
-      if (playerName.length > 15) alert('Too long');
-      else break;
-    }
-
-    const player = { name: playerName, time: gameTime };
+    let playerName = promptUserName();
+    const player = { name: playerName, time: gDurationTime };
 
     // if gLeaders reach 10 records
     if (gLeaders.length === 10) gLeaders.pop();
@@ -89,7 +80,7 @@ function saveToLeaders(player) {
     case MEDIUM:
       saveToLS('mediumLeaders', gLeaders);
       break;
-    case EASY:
+    case EXPERT:
       saveToLS('expertLeaders', gLeaders);
       break;
   }
@@ -111,6 +102,19 @@ function clearLeaderRecords() {
 
   renderLeaders(gLeaders);
 }
+
+function promptUserName() {
+  let playerName = null;
+
+  while (true) {
+    playerName = prompt('What is your name?');
+    if (playerName.length > 15) alert('Too long');
+    else break;
+  }
+
+  return playerName || 'Player';
+}
+
 {
   /* <ul class='leaders'></ul>; */
 }

@@ -63,9 +63,3 @@ String.prototype.toMMSS = function () {
   }
   return minutes + ':' + seconds;
 };
-
-/* 
- <div class='timer'>
-   <span>00:00</span>
- </div>;
- */

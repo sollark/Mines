@@ -15,7 +15,8 @@ function createCell() {
 }
 
 function cellClicked(elCell, i, j) {
-  // console.log('cell clicked');
+  // first click, start game
+  if (!gGame.isOn && isFirstClick()) gGame.isOn = true;
 
   // if game is off, ignore all clicks
   if (!gGame.isOn) return;
@@ -25,14 +26,14 @@ function cellClicked(elCell, i, j) {
     startTimer();
 
     // MODEL
-    placeMines();
+    placeMines({ i, j });
     setMinesNegsCount(gBoard);
   }
 
   const currCell = gBoard[i][j];
   const loc = { i, j };
 
-  // if cel is open, ignore all clicks. recursion stopper
+  // if cel is open, ignore click.
   if (currCell.isShown) return;
 
   // RMB (flag marker)
@@ -54,15 +55,16 @@ function cellClicked(elCell, i, j) {
     if (currCell.isMine) {
       decreaseMineCounter();
       renderMine(loc);
+      removeLife();
 
       // mine is defective
       if (gLives) {
-        removeLife();
+        touchingMine();
       }
       // explosion
       else {
         stepOnMine(loc);
-        gameIsOver();
+        gameIsOver(false);
         return;
       }
     }
@@ -92,6 +94,10 @@ function stepOnMine(loc) {
   //explode image
   addToCellValue(loc, EXPLOSION_IMG);
   boomSound();
+}
+
+function touchingMine() {
+  metalSound();
 }
 
 function expendShow(board, elCell, loc) {
@@ -142,7 +148,7 @@ function setMinesNegsCount(board) {
     }
 }
 
-function placeMines() {
+function placeMines(playerLoc) {
   let counter = gLevel.MINES;
 
   while (counter--) {
@@ -150,7 +156,11 @@ function placeMines() {
       i: getRandomInt(0, gLevel.SIZE - 1),
       j: getRandomInt(0, gLevel.SIZE - 1),
     };
-    if (gBoard[randomLocation.i][randomLocation.j].isMine) counter++;
+    if (
+      gBoard[randomLocation.i][randomLocation.j].isMine ||
+      JSON.stringify(playerLoc) === JSON.stringify(randomLocation)
+    )
+      counter++;
     else gBoard[randomLocation.i][randomLocation.j].isMine = true;
   }
 }
@@ -168,4 +178,14 @@ function renderHidden(loc) {
   gBoard[loc.i][loc.j].isMarked
     ? renderCell(loc, FLAG_IMG)
     : renderCell(loc, '');
+}
+
+function isFirstClick() {
+  for (let i = 0; i < gLevel.SIZE; i++)
+    for (let j = 0; j < gLevel.SIZE; j++) {
+      const currCell = gBoard[i][j];
+      if (currCell.isShown) return false;
+    }
+
+  return true;
 }

@@ -10,15 +10,13 @@ let gBoard = null;
 
 function initGame() {
   // finish previous game
-  gGame.isOn && gameIsOver();
+  gGame.isOn && confirm('Do you want start a new game?') && gameIsOver();
 
   gBoard = buildBoard(gLevel.SIZE, gLevel.SIZE, gLevel.MINES);
   renderBoard(gBoard);
 
   initSettings();
   initLeaderList();
-
-  gGame.isOn = true;
 }
 
 function onStartGameClick() {
@@ -55,13 +53,12 @@ function checkGameOver() {
   return true;
 }
 
-function gameIsOver(isWin = false) {
-  console.log('game is over');
+function gameIsOver(isWin) {
+  stopTimer();
   isWin ? updateEmoji(EMOJI_COOL) : updateEmoji(EMOJI_SAD);
+  isWin && checkIfLeader();
 
   gGame.isOn = false;
-  stopTimer();
-  isWin && checkIfLeader();
 }
 
 function initSettings() {
