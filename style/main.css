@@ -111,6 +111,11 @@ header img {
     max-width: 40px;
 }
 
+.level img {
+    /* display: block; */
+    max-width: 30px;
+}
+
 .reset-btn {
     border-radius: 5px;
     padding: 1em;
