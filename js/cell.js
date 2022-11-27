@@ -73,6 +73,8 @@ function cellClicked(elCell, i, j) {
         return;
       }
     }
+    updateEmoji(EMOJI_SMILE);
+
     // if there are mine around
     if (currCell.minesAroundCount > 0) {
       renderMineAroundCount(loc);
@@ -99,6 +101,10 @@ function stepOnMine(loc) {
 }
 
 function touchingMine() {
+  setTimeout(() => {
+    updateEmoji(EMOJI_SWEATY);
+  }, 50);
+
   metalSound();
 }
 
