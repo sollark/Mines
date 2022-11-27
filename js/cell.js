@@ -59,8 +59,8 @@ function cellClicked(elCell, i, j) {
 
     if (currCell.isMine) {
       decreaseMineCounter();
-      renderMine(loc);
       removeLife();
+      renderMine(loc);
 
       // mine is defective
       if (gLives) {

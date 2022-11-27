@@ -135,6 +135,10 @@ header img {
     line-height: 2.5;
 }
 
+.hints {
+    cursor: pointer;
+}
+
 /* main  */
 .game__container {
     margin-top: 3em;
