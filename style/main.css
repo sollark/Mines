@@ -54,6 +54,7 @@ button {
 
 .root {
     height: 100vh;
+    max-width: 100vw;
 }
 
 
