@@ -1,217 +1,214 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 .z-index5 {
-    z-index: 5;
+  z-index: 5;
 }
 
 .z-index10 {
-    z-index: 10;
+  z-index: 10;
 }
 
 img {
-    max-width: 20px;
-    height: auto
+  max-width: 20px;
+  height: auto;
 }
 
 img.big {
-    position: absolute;
-    top: -20%;
-    left: -15%;
-    max-width: 50px;
+  position: absolute;
+  top: -20%;
+  left: -15%;
+  max-width: 50px;
 }
 
 img.small {
-    position: absolute;
-    top: -80%;
-    left: 20%;
-    max-width: 30px;
+  position: absolute;
+  top: -80%;
+  left: 20%;
+  max-width: 30px;
 }
 
 img.medium {
-    position: absolute;
-    top: 0;
-    left: 5%;
-    max-width: 40px;
+  position: absolute;
+  top: 0;
+  left: 5%;
+  max-width: 40px;
 }
 
 ul,
 li {
-    text-decoration: none;
-    list-style: none;
+  text-decoration: none;
+  list-style: none;
 }
 
 button {
-    padding: .5em;
-    color: aliceblue;
-    background-color: green;
+  padding: 0.5em;
+  color: aliceblue;
+  background-color: green;
 
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .root {
-    height: 100vh;
-    max-width: 100vw;
+  height: 100vh;
+  max-width: 100vw;
 }
 
-
 body {
-    background-image: url('../assets/images/bg.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+  background-image: url('../assets/images/bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .game {
-    width: 1200px;
-    height: 700px;
-    background: rgba(0, 0, 0, 0.2);
+  width: 1200px;
+  height: 700px;
+  background: rgba(0, 0, 0, 0.2);
 
-    margin: 2rem auto;
+  margin: 2rem auto;
 }
 
 header {
-    width: 100%;
-    height: 120px;
-    background: rgba(12, 17, 1, 0.81);
-    color: chartreuse;
+  width: 100%;
+  height: 120px;
+  background: rgba(12, 17, 1, 0.81);
+  color: chartreuse;
 }
 
 header table {
-    padding: 1em;
-    table-layout: fixed;
-    width: 100%;
-    height: 100%;
-    border-collapse: collapse;
+  padding: 1em;
+  table-layout: fixed;
+  width: 100%;
+  height: 100%;
+  border-collapse: collapse;
 }
 
 th,
 td {
-    text-align: center;
+  text-align: center;
 }
 
 td.space {
-    width: 2%;
-    white-space: nowrap;
+  width: 2%;
+  white-space: nowrap;
 }
 
 td.label {
-    margin: 1em;
-    width: 125px;
+  margin: 1em;
+  width: 125px;
 }
 
 td .emoji {
-    font-size: 2.5rem;
-    text-shadow: 2px 2px #665c01;
+  font-size: 2.5rem;
+  text-shadow: 2px 2px #665c01;
 }
 
 header img {
-    max-width: 40px;
+  max-width: 40px;
 }
 
 .level img {
-    /* display: block; */
-    max-width: 30px;
+  max-width: 30px;
 }
 
 .reset-btn {
-    border-radius: 5px;
-    padding: 1em;
+  border-radius: 5px;
+  padding: 1em;
 }
 
 .lives span,
 .hints span {
-    position: relative;
-    background-color: rgba(127, 143, 88, 0.81);
+  position: relative;
+  background-color: rgba(127, 143, 88, 0.81);
 }
 
 .header__title {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: rgb(231, 217, 24);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: rgb(231, 217, 24);
 
-    line-height: 2.5;
+  line-height: 2.5;
 }
 
 .hints {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 /* main  */
 .game__container {
-    margin-top: 3em;
+  margin-top: 3em;
 }
 
-
 .records {
-    display: inline-block;
-    padding: 2em 3em 0 2em;
+  display: inline-block;
+  padding: 2em 3em 0 2em;
 
-    text-align: left;
-    line-height: 2.5;
+  text-align: left;
+  line-height: 2.5;
 
-    vertical-align: top;
-    width: 30%;
-    height: 533px;
-    background: rgba(127, 143, 88, 0.81);
+  vertical-align: top;
+  width: 30%;
+  height: 533px;
+  background: rgba(127, 143, 88, 0.81);
 }
 
 .records h3 {
-    display: inline-block;
-    font-size: 1.7rem;
-    color: rgb(2, 48, 2);
+  display: inline-block;
+  font-size: 1.7rem;
+  color: rgb(2, 48, 2);
 }
 
 .records button {
-    display: inline-block;
-    margin-left: 4em;
+  display: inline-block;
+  margin-left: 4em;
 }
 
 .records .time {
-    float: inline-end;
+  float: inline-end;
 }
 
 /* GAME BOARD  */
 .mine-field {
-    height: 550px;
+  height: 550px;
 
-    display: inline-block;
-    width: 65%;
+  display: inline-block;
+  width: 65%;
 }
 
 .mine-field table {
-    margin: auto;
+  margin: auto;
 }
 
 .board {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .mine-field table {
-    border: 2px solid black;
-    cursor: crosshair;
+  border: 2px solid black;
+  cursor: crosshair;
 }
 
 .cell {
-    position: relative;
-    width: 42px;
-    height: 42px;
-    background-color: rgb(231, 217, 24);
+  position: relative;
+  width: 42px;
+  height: 42px;
+  background-color: rgb(231, 217, 24);
 }
 
 .cell.open {
-    background-color: rgb(179, 167, 7);
+  background-color: rgb(179, 167, 7);
 }
 
 footer {
-    height: 50px;
+  height: 50px;
 
-    font-size: 1.5rem;
-    text-align: center;
-    font-weight: 500;
-    color: white;
+  font-size: 1.5rem;
+  text-align: center;
+  font-weight: 500;
+  color: white;
 }
